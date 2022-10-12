@@ -6,29 +6,78 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    absolute = number
+    if number < 0:
+        absolute = -number
+    return absolute
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    names = []
+    for letter in prefixes:
+        names.append(letter + suffixe)
+    return names
 
 
 def prime_integer_summation() -> int:
-    return 0
+    prime_list = []
+    sum = 0
+    i = 2
+    while len(prime_list) < 100:
+        prime = True
+        for prime_number in prime_list:
+            if i % prime_number == 0:
+                prime = False
+                break
+        if prime:
+            prime_list.append(i)
+            sum += i
+        i += 1
+
+    return sum
 
 
 def factorial(number: int) -> int:
-    return 0
+    fact = 1
+    for i in range(number,0,-1):
+        fact = fact*i
+
+    return fact
 
 
 def use_continue() -> None:
-    pass
+    for i in range(10):
+        if i == 5:
+            continue
+        print(i)
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    list_verify = []
+    for group in groups:
+        valid = True
+        number_seventy = 0
+        number_fifty = 0
+
+        if len(group) > 10 or len(group) <= 3:
+            valid = False
+        else:
+            for person in group:
+                if person < 18:
+                    valid = False
+                    break
+                elif person > 70:
+                    number_seventy += 1
+                elif person == 50:
+                    number_fifty += 1
+            if 25 in group:
+                valid = True
+            elif number_seventy == 1 and number_fifty == 1:
+                valid = False
+        list_verify.append(valid)
+
+    return list_verify
 
 
 def main() -> None:
